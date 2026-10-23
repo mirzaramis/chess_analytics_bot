@@ -1,10 +1,22 @@
 # chess-analytics
 
-Pulls your full chess.com game history, resolves opponent countries, and
-produces win/draw/loss tables and charts by country — refreshed daily via
-GitHub Actions.
+An automated analytics pipeline for a chess.com account. It pulls the
+account's full game history from the public chess.com API, resolves opponent
+countries, and produces win/draw/loss tables, rating-progression charts,
+session-fatigue analysis and significance tests — refreshed daily via GitHub
+Actions, which commits the updated data and charts back to the repo.
 
-The API: https://api.chess.com/pub/player/{username}/games/archives gives you a list of monthly archive URLs, each returning full PGNs with clock times if you played with a clock.
+**Whose games?** The pipeline is username-agnostic: the account is set with the
+`CHESS_USERNAME` variable. The data and charts currently in this repo were
+produced for a client's account (with their permission), not the maintainer's
+own — treat the numbers below as that player's results. Point it at any
+account and it will rebuild everything from scratch on the first run.
+
+Built by Mirza Ramis Baig. The pipeline was first developed under a previous
+GitHub account that is no longer accessible; this repository carries the
+current version.
+
+The API: https://api.chess.com/pub/player/{username}/games/archives returns a list of monthly archive URLs, each returning full PGNs with clock times for clocked games.
 
 <!-- STATS:START -->
 ### Last updated: 2026-10-23 11:36 UTC
@@ -14,17 +26,17 @@ The API: https://api.chess.com/pub/player/{username}/games/archives gives you a 
 **Statistically flagged countries this run** (Bonferroni-corrected within this run's test set —
 does *not* correct across repeated daily runs; see notes in `chess_analytics/stats.py`):
 
-_No country crosses the Bonferroni-corrected significance threshold this run — consistent with the earlier manual finding that country has no strong effect on your results once tested properly._
+_No country crosses the Bonferroni-corrected significance threshold this run — consistent with the earlier manual finding that country has no strong effect on this player's results once tested properly._
 
-**Session fatigue** (does performance decline the longer you play in one sitting? —
+**Session fatigue** (does performance decline the longer the player stays in one sitting? —
 sessions inferred from time gaps, see `chess_analytics/sessions.py`):
 
 Based on 1592 inferred sessions, 2558 games. Position-vs-performance correlation: ρ=-0.0291, p=0.1426 — not distinguishable from no trend. First game of session vs. later games: later games score worse by 0.033 on average, p=0.0788 — not distinguishable from noise. _Both tests use α=0.05 uncorrected for this specific comparison — treat a single borderline p-value as a lead to watch over time, not a confirmed effect, same caveat as the country analysis._
 
 **Peak rating** (see `chess_analytics/milestones.py` — this is a moving target, updates as new games are added):
 
-- **Blitz**: peak rating **917**, reached after 1068 of 1160 rated games, on 2026-10-06 — you've since come back down from it
-- **Rapid**: peak rating **986**, reached after 1171 of 1384 rated games, on 2026-04-16 — you've since come back down from it
+- **Blitz**: peak rating **917**, reached after 1068 of 1160 rated games, on 2026-10-06 — the account has since come back down from it
+- **Rapid**: peak rating **986**, reached after 1171 of 1384 rated games, on 2026-04-16 — the account has since come back down from it
 
 
 **Charts:**
@@ -44,15 +56,15 @@ Peak rating data: [`data/peak_rating_report.csv`](data/peak_rating_report.csv)
 ## Setup
 
 1. In **Settings → Secrets and variables → Actions → Variables**, add:
-   - `CHESS_USERNAME` = your chess.com username
+   - `CHESS_USERNAME` = the chess.com username to analyse
    - `CHESS_CONTACT_EMAIL` = a real email (chess.com's API wants an
      identifying User-Agent; an anonymous/browser-spoofed one risks
      silent rate-limiting)
 2. Confirm **Settings → Actions → General → Workflow permissions** is set to
    "Read and write permissions" — the workflow needs to commit files back.
 3. Trigger it once manually (Actions tab → "Refresh chess.com stats" →
-   "Run workflow") to do the initial full pull. This first run fetches your
-   entire history and resolves every opponent, so expect it to take longer
+   "Run workflow") to do the initial full pull. This first run fetches the
+   account's entire history and resolves every opponent, so expect it to take longer
    than subsequent runs — with 2,000+ opponents, budget several minutes.
 
 ## What runs on schedule
@@ -66,27 +78,27 @@ Daily at 06:17 UTC (see `.github/workflows/refresh_stats.yml`).
   already in `data/opponent_cache.json` get a fresh profile lookup. This
   keeps daily runs cheap.
 - **`MIN_GAMES = 15`** in `chess_analytics/config.py` is the floor for any country to
-  appear in tables/charts. Tweak it however you want, but I'd suggest not
-  lowering it than 15, so you'd have enough pool of games.
+  appear in tables/charts. Lowering it below 15 is not recommended — the
+  per-country pool gets too small for the tests to mean anything.
 - **Non-standard country codes** (`XX`, `XS`, `XO`, etc. — chess.com
   placeholders, not real ISO countries) are explicitly excluded, not
   guess-mapped. If chess.com introduces a new placeholder code previously
   unseen, it'll show up as `country_name = None` and silently drop out of the
-  tables — if a country you expect is missing, check `data/games.csv`.
+  tables — if an expected country is missing, check `data/games.csv`.
 - **Repeat-opponent games are flagged, not excluded from the raw dataset**
-  (`is_repeat_opponent` column, threshold: played more than twice). I 
-  exlcuded the unrated friendly matches I played with my chess.com friends,
-  and the mechanism I did for that was any opponent with whom I have played
-  more than 2 games is considered a friend.
+  (`is_repeat_opponent` column, threshold: played more than twice). This is
+  a proxy for friendly matches: any opponent the account has played more
+  than twice is treated as a friend and those games are excluded from the
+  country tables.
 - **Significance testing is automated but not fully "solved."**
   `build_significance_report()` runs a per-country t-test against
   baseline delta, with a Bonferroni correction sized to that day's number
   of eligible countries. What it can't do: correct across repeated daily
   runs. A country that flags once in 200 runs is noise; a country that
   flags repeatedly over weeks is worth a manual look.
-- **Bullet and daily formats are excluded from charts** — historically too
-  few games to be meaningful in my case. Once enough games pile up, I'll
-  add that as well
+- **Bullet and daily formats are excluded from charts** — too few games in
+  this account's history to be meaningful. Easy to enable once there are
+  enough.
 
 ## Files
 
@@ -106,7 +118,19 @@ Daily at 06:17 UTC (see `.github/workflows/refresh_stats.yml`).
 - `charts/outcome_clustered_{blitz,rapid}.png` — clustered bar charts by country
 
 **Why this is split this way:** nothing here is reused outside this one
-pipeline and there's no test suite, so the split isn't buying reuse or
+pipeline and there's no test suite yet, so the split isn't buying reuse or
 testability — it's purely so no single file becomes huge and each
 one answers one question ("how do we fetch," "how do we cache," "how do we
-decide what's significant") on its own. 
+decide what's significant") on its own.
+
+## Methods, briefly
+
+- **Country effect:** per-country t-test of performance delta against the
+  overall baseline, Bonferroni-corrected across the countries tested that day
+  (`stats.py`).
+- **Session fatigue:** sessions inferred from time gaps between games
+  (`sessions.py`); Spearman correlation of position-in-session vs.
+  performance, plus first-game-vs-later-games comparison.
+- **Peak rating:** tracked per format from the rating after each rated game
+  (`milestones.py`).
+

@@ -138,7 +138,7 @@ def build_session_fatigue_chart(summary):
                        color=FG, fontsize=13)
     ax.set_xlabel("Game number within a session", color=FG, fontsize=13, labelpad=8)
     ax.set_ylabel("Score vs. Elo expectation (mean, 95% CI)", color=FG, fontsize=13)
-    ax.set_title("Do I play worse the longer I sit?\nbars = mean performance delta; whiskers = 95% CI",
+    ax.set_title("Does performance drop the longer the session runs?\nbars = mean performance delta; whiskers = 95% CI",
                  color=FG, fontsize=15, loc="left", pad=14)
 
     plt.tight_layout()
@@ -225,7 +225,7 @@ def update_readme(clean_df, sig_df, session_summary=None, session_meta=None, pea
             flagged_lines = (
                 "_No country crosses the Bonferroni-corrected significance threshold this run — "
                 "consistent with the earlier manual finding that country has no strong effect "
-                "on your results once tested properly._"
+                "on this player's results once tested properly._"
             )
     else:
         flagged_lines = (
@@ -262,7 +262,7 @@ def update_readme(clean_df, sig_df, session_summary=None, session_meta=None, pea
     else:
         peak_parts = []
         for r in peak_df.itertuples():
-            status = "— that's still your peak right now" if r.currently_at_peak else "— you've since come back down from it"
+            status = "— still the current peak" if r.currently_at_peak else "— the account has since come back down from it"
             peak_parts.append(
                 f"- **{r.time_class.capitalize()}**: peak rating **{r.peak_rating}**, reached after "
                 f"{r.games_to_reach_peak} of {r.total_games_in_format} rated games, on {r.peak_date.date()} {status}"
@@ -279,7 +279,7 @@ does *not* correct across repeated daily runs; see notes in `chess_analytics/sta
 
 {flagged_lines}
 
-**Session fatigue** (does performance decline the longer you play in one sitting? —
+**Session fatigue** (does performance decline the longer the player stays in one sitting? —
 sessions inferred from time gaps, see `chess_analytics/sessions.py`):
 
 {fatigue_lines}
