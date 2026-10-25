@@ -14,9 +14,7 @@ on 2026-10-24 when the original source account was renamed; history rebuilds
 from scratch on the next run. Point it at any
 account and it will rebuild everything from scratch on the first run.
 
-Built by Mirza Ramis Baig. The pipeline was first developed under a previous
-GitHub account that is no longer accessible; this repository carries the
-current version.
+Built by Mirza Ramis Baig.
 
 The API: https://api.chess.com/pub/player/{username}/games/archives returns a list of monthly archive URLs, each returning full PGNs with clock times for clocked games.
 
