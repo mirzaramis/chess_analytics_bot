@@ -19,9 +19,9 @@ Built by Mirza Ramis Baig.
 The API: https://api.chess.com/pub/player/{username}/games/archives returns a list of monthly archive URLs, each returning full PGNs with clock times for clocked games.
 
 <!-- STATS:START -->
-### Last updated: 2026-11-08 13:36 UTC
+### Last updated: 2026-11-09 16:34 UTC
 
-**Dataset:** 2732 rated games, 2023-02-16 to 2026-11-08
+**Dataset:** 2738 rated games, 2023-02-16 to 2026-11-09
 
 **Statistically flagged countries this run** (Bonferroni-corrected within this run's test set —
 does *not* correct across repeated daily runs; see notes in `chess_analytics/stats.py`):
@@ -31,11 +31,11 @@ _No country crosses the Bonferroni-corrected significance threshold this run —
 **Session fatigue** (does performance decline the longer the player stays in one sitting? —
 sessions inferred from time gaps, see `chess_analytics/sessions.py`):
 
-Based on 1707 inferred sessions, 2732 games. Position-vs-performance correlation: ρ=-0.0288, p=0.1338 — not distinguishable from no trend. First game of session vs. later games: later games score worse by 0.032 on average, p=0.0732 — not distinguishable from noise. _Both tests use α=0.05 uncorrected for this specific comparison — treat a single borderline p-value as a lead to watch over time, not a confirmed effect, same caveat as the country analysis._
+Based on 1710 inferred sessions, 2738 games. Position-vs-performance correlation: ρ=-0.0297, p=0.1214 — not distinguishable from no trend. First game of session vs. later games: later games score worse by 0.033 on average, p=0.0669 — not distinguishable from noise. _Both tests use α=0.05 uncorrected for this specific comparison — treat a single borderline p-value as a lead to watch over time, not a confirmed effect, same caveat as the country analysis._
 
 **Peak rating** (see `chess_analytics/milestones.py` — this is a moving target, updates as new games are added):
 
-- **Blitz**: peak rating **917**, reached after 1143 of 1314 rated games, on 2026-10-06 — the account has since come back down from it
+- **Blitz**: peak rating **917**, reached after 1143 of 1320 rated games, on 2026-10-06 — the account has since come back down from it
 - **Rapid**: peak rating **986**, reached after 1171 of 1401 rated games, on 2026-04-16 — the account has since come back down from it
 
 
