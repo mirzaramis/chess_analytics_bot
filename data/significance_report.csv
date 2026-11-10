@@ -1,38 +1,38 @@
 time_class,country,n_games,mean_delta,p_raw,n_tests_this_run,bonferroni_alpha,significant_after_correction
-blitz,Brazil,42,-0.1172,0.0469,16,0.00313,False
-blitz,Mexico,32,0.1538,0.0929,16,0.00313,False
-blitz,Türkiye,42,-0.0887,0.1306,16,0.00313,False
-blitz,India,132,-0.0261,0.2119,16,0.00313,False
-blitz,United Kingdom,53,0.0882,0.2615,16,0.00313,False
-blitz,France,76,0.0725,0.3186,16,0.00313,False
-blitz,Spain,30,-0.0598,0.352,16,0.00313,False
-blitz,Italy,26,0.1006,0.3677,16,0.00313,False
-blitz,Canada,33,-0.044,0.4153,16,0.00313,False
-blitz,Philippines,41,-0.0286,0.4907,16,0.00313,False
-blitz,Egypt,24,-0.0429,0.5184,16,0.00313,False
-blitz,Australia,18,-0.0341,0.6231,16,0.00313,False
-blitz,United States,221,0.0101,0.6965,16,0.00313,False
-blitz,Indonesia,65,0.0424,0.7118,16,0.00313,False
-blitz,Russian Federation,25,0.0372,0.8667,16,0.00313,False
-blitz,Germany,34,0.0278,0.9353,16,0.00313,False
-rapid,Netherlands,20,0.2015,0.059,21,0.00238,False
-rapid,Indonesia,59,-0.0877,0.0853,21,0.00238,False
-rapid,Mexico,20,0.1841,0.1042,21,0.00238,False
-rapid,Argentina,24,0.1589,0.1178,21,0.00238,False
-rapid,Russian Federation,21,0.1162,0.3144,21,0.00238,False
-rapid,Spain,25,-0.0614,0.4153,21,0.00238,False
-rapid,Ukraine,22,-0.0669,0.4269,21,0.00238,False
-rapid,France,71,-0.0196,0.5233,21,0.00238,False
-rapid,Italy,45,-0.0232,0.5527,21,0.00238,False
-rapid,"Iran, Islamic Republic of",18,-0.0508,0.564,21,0.00238,False
-rapid,India,205,0.0319,0.5652,21,0.00238,False
-rapid,Egypt,29,-0.0325,0.5888,21,0.00238,False
-rapid,Canada,18,0.0722,0.6101,21,0.00238,False
-rapid,Viet Nam,26,0.0583,0.6227,21,0.00238,False
-rapid,Poland,19,0.0528,0.7175,21,0.00238,False
-rapid,Philippines,28,-0.0172,0.7199,21,0.00238,False
-rapid,United Kingdom,44,0.0269,0.8605,21,0.00238,False
-rapid,Türkiye,20,0.0029,0.9125,21,0.00238,False
-rapid,United States,163,0.0116,0.929,21,0.00238,False
-rapid,Germany,32,0.0185,0.9621,21,0.00238,False
-rapid,Brazil,39,0.0149,0.997,21,0.00238,False
+blitz,Brazil,42,-0.1172,0.0481,16,0.00313,False
+blitz,Mexico,32,0.1538,0.0911,16,0.00313,False
+blitz,Türkiye,42,-0.0887,0.1333,16,0.00313,False
+blitz,India,133,-0.0294,0.1867,16,0.00313,False
+blitz,United Kingdom,53,0.0882,0.2561,16,0.00313,False
+blitz,France,76,0.0725,0.3114,16,0.00313,False
+blitz,Spain,30,-0.0598,0.3566,16,0.00313,False
+blitz,Italy,26,0.1006,0.3631,16,0.00313,False
+blitz,Canada,33,-0.044,0.4208,16,0.00313,False
+blitz,Philippines,41,-0.0286,0.4975,16,0.00313,False
+blitz,Egypt,24,-0.0429,0.5235,16,0.00313,False
+blitz,Australia,18,-0.0341,0.628,16,0.00313,False
+blitz,Indonesia,65,0.0424,0.7017,16,0.00313,False
+blitz,United States,221,0.0101,0.7168,16,0.00313,False
+blitz,Russian Federation,25,0.0372,0.8602,16,0.00313,False
+blitz,Germany,34,0.0278,0.9276,16,0.00313,False
+rapid,Netherlands,20,0.2015,0.0586,21,0.00238,False
+rapid,Indonesia,59,-0.0877,0.0864,21,0.00238,False
+rapid,Mexico,20,0.1841,0.1035,21,0.00238,False
+rapid,Argentina,24,0.1589,0.1169,21,0.00238,False
+rapid,Russian Federation,21,0.1162,0.3127,21,0.00238,False
+rapid,Spain,25,-0.0614,0.4175,21,0.00238,False
+rapid,Ukraine,22,-0.0669,0.4289,21,0.00238,False
+rapid,France,71,-0.0196,0.5277,21,0.00238,False
+rapid,Italy,45,-0.0232,0.5564,21,0.00238,False
+rapid,India,205,0.0319,0.5572,21,0.00238,False
+rapid,"Iran, Islamic Republic of",18,-0.0508,0.5661,21,0.00238,False
+rapid,Egypt,29,-0.0325,0.5916,21,0.00238,False
+rapid,Canada,18,0.0722,0.6079,21,0.00238,False
+rapid,Viet Nam,26,0.0583,0.6198,21,0.00238,False
+rapid,Poland,19,0.0528,0.715,21,0.00238,False
+rapid,Philippines,28,-0.0172,0.7229,21,0.00238,False
+rapid,United Kingdom,44,0.0269,0.8564,21,0.00238,False
+rapid,United States,164,0.0088,0.8701,21,0.00238,False
+rapid,Türkiye,20,0.0029,0.9151,21,0.00238,False
+rapid,Germany,32,0.0185,0.9587,21,0.00238,False
+rapid,Brazil,39,0.0149,0.9932,21,0.00238,False
