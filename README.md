@@ -19,7 +19,7 @@ Built by Mirza Ramis Baig.
 The API: https://api.chess.com/pub/player/{username}/games/archives returns a list of monthly archive URLs, each returning full PGNs with clock times for clocked games.
 
 <!-- STATS:START -->
-### Last updated: 2026-11-16 15:59 UTC
+### Last updated: 2026-11-17 16:11 UTC
 
 **Dataset:** 2765 rated games, 2023-02-16 to 2026-11-15
 
